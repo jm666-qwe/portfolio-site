@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚡ FULL-STACK DEV</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--cyan:#00f0ff;--magenta:#ff00e5;--purple:#7b2fff;--dark:#0a0a0f;--card:#111122}
+body{background:var(--dark);color:#e0e0e0;font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden;cursor:none}
+#bg{position:fixed;top:0;left:0;z-index:0}
+#cursor{position:fixed;width:20px;height:20px;border:2px solid var(--cyan);border-radius:50%;pointer-events:none;z-index:9999;transition:width .2s,height .2s,border-color .2s;transform:translate(-50%,-50%);mix-blend-mode:difference}
+#cursor-dot{position:fixed;width:4px;height:4px;background:var(--cyan);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+.container{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px}
+section{padding:100px 0;min-height:100vh;display:flex;align-items:center}
+.hero{flex-direction:column;justify-content:center;text-align:center}
+.hero-badge{display:inline-block;padding:6px 20px;border:1px solid rgba(0,240,255,.3);border-radius:50px;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--cyan);margin-bottom:40px;animation:fadeInUp .8s ease}
+.glitch-wrap{position:relative;margin-bottom:16px}
+.glitch{font-size:clamp(48px,8vw,96px);font-weight:900;letter-spacing:-2px;line-height:1;color:#fff;animation:glitch-skew 4s infinite linear alternate-reverse}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%}
+.glitch::before{left:2px;text-shadow:-2px 0 var(--magenta);clip:rect(24px,550px,90px,0);animation:glitch-anim-1 2s infinite linear alternate-reverse}
+.glitch::after{left:-2px;text-shadow:-2px 0 var(--cyan);clip:rect(85px,550px,140px,0);animation:glitch-anim-2 3s infinite linear alternate-reverse}
+@keyframes glitch-anim-1{0%{clip:rect(30px,9999px,88px,0)}20%{clip:rect(12px,9999px,62px,0)}40%{clip:rect(65px,9999px,5px,0)}60%{clip:rect(90px,9999px,55px,0)}80%{clip:rect(18px,9999px,99px,0)}100%{clip:rect(44px,9999px,72px,0)}}
+@keyframes glitch-anim-2{0%{clip:rect(71px,9999px,45px,0)}20%{clip:rect(3px,9999px,86px,0)}40%{clip:rect(38px,9999px,92px,0)}60%{clip:rect(56px,9999px,16px,0)}80%{clip:rect(49px,9999px,81px,0)}100%{clip:rect(24px,9999px,63px,0)}}
+@keyframes glitch-skew{0%{transform:skew(0)}20%{transform:skew(0)}21%{transform:skew(2deg)}22%{transform:skew(-1deg)}23%{transform:skew(0)}60%{transform:skew(0)}61%{transform:skew(-1.5deg)}62%{transform:skew(0)}}
+.subtitle{font-size:clamp(16px,2.5vw,22px);color:#888;letter-spacing:1px;margin-bottom:50px;animation:fadeInUp .8s ease .2s both}
+.scroll-indicator{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeInUp .8s ease .6s both}
+.scroll-indicator span{font-size:11px;letter-spacing:3px;color:#555}
+.scroll-line{width:1px;height:50px;background:linear-gradient(transparent,var(--cyan));animation:scrollPulse 2s infinite}
+@keyframes scrollPulse{0%,100%{opacity:.3;height:40px}50%{opacity:1;height:60px}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.section-title{font-size:14px;letter-spacing:6px;text-transform:uppercase;color:var(--cyan);margin-bottom:60px;position:relative}
+.section-title::after{content:'';position:absolute;left:0;bottom:-12px;width:40px;height:2px;background:var(--cyan)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;width:100%}
+.skill-card{background:var(--card);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:40px 32px;position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.23,1,.32,1),border-color .4s;transform-style:preserve-3d;perspective:1000px}
+.skill-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,240,255,.4),transparent);opacity:0;transition:opacity .4s}
+.skill-card:hover::before{opacity:1}
+.skill-card:hover{border-color:rgba(0,240,255,.2);transform:translateY(-8px)}
+.skill-icon{font-size:40px;margin-bottom:20px}
+.skill-card h3{font-size:20px;margin-bottom:10px;color:#fff}
+.skill-card p{color:#777;font-size:14px;line-height:1.7}
+.skill-card .glow-dot{position:absolute;top:20px;right:20px;width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:dotPulse 2s infinite}
+@keyframes dotPulse{0%,100%{opacity:.5}50%{opacity:1}}
+.terminal-section{flex-direction:column;justify-content:center}
+.terminal{width:100%;max-width:800px;background:#0d0d1a;border:1px solid rgba(0,240,255,.15);border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 40px rgba(0,240,255,.05)}
+.terminal-header{background:#111128;padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.05)}
+.terminal-dot{width:10px;height:10px;border-radius:50%}
+.terminal-dot:nth-child(1){background:#ff5f57}
+.terminal-dot:nth-child(2){background:#febc2e}
+.terminal-dot:nth-child(3){background:#28c840}
+.terminal-title{margin-left:12px;font-size:12px;color:#555;letter-spacing:1px}
+.terminal-body{padding:24px;font-family:'Cascadia Code','Fira Code','JetBrains Mono',monospace;font-size:14px;line-height:1.8;min-height:300px}
+.terminal-line{display:flex;gap:8px}
+.terminal-prompt{color:var(--cyan)}
+.terminal-output{color:#aaa}
+.terminal-cursor{display:inline-block;width:8px;height:16px;background:var(--cyan);animation:blink 1s step-end infinite;vertical-align:middle;margin-left:2px}
+@keyframes blink{50%{opacity:0}}
+.project-preview{display:flex;gap:24px;flex-wrap:wrap;width:100%}
+.project-card{flex:1;min-width:280px;background:var(--card);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:0;overflow:hidden;transition:transform .4s cubic-bezier(.23,1,.32,1),box-shadow .4s;cursor:pointer}
+.project-card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,240,255,.08)}
+.project-img{height:180px;background:linear-gradient(135deg,#1a1a3e,#0d0d2b);display:flex;align-items:center;justify-content:center;font-size:60px;position:relative;overflow:hidden}
+.project-img::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 60%,var(--card))}
+.project-info{padding:24px}
+.project-info h3{font-size:18px;color:#fff;margin-bottom:6px}
+.project-info p{color:#777;font-size:13px}
+.project-tags{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.tag{padding:3px 10px;border:1px solid rgba(0,240,255,.2);border-radius:50px;font-size:11px;color:var(--cyan)}
+.cta-section{flex-direction:column;justify-content:center;text-align:center}
+.cta-text{font-size:clamp(32px,5vw,56px);font-weight:800;color:#fff;margin-bottom:20px;line-height:1.2}
+.cta-sub{color:#666;font-size:16px;margin-bottom:50px}
+.glow-btn{display:inline-block;padding:16px 48px;border:2px solid var(--cyan);border-radius:50px;color:var(--cyan);font-size:16px;font-weight:600;letter-spacing:2px;text-transform:uppercase;background:transparent;cursor:pointer;position:relative;overflow:hidden;transition:all .4s;text-decoration:none}
+.glow-btn::before{content:'';position:absolute;inset:0;background:var(--cyan);opacity:0;transition:opacity .4s;z-index:-1}
+.glow-btn:hover{color:var(--dark)}
+.glow-btn:hover::before{opacity:1}
+.glow-btn:hover{box-shadow:0 0 30px rgba(0,240,255,.4),0 0 60px rgba(0,240,255,.15)}
+.stats-bar{display:flex;gap:40px;margin-top:60px;flex-wrap:wrap;justify-content:center}
+.stat{text-align:center}
+.stat-num{font-size:40px;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{font-size:12px;color:#555;letter-spacing:3px;text-transform:uppercase;margin-top:8px}
+
+/* === QR MODAL === */
+.modal-overlay{
+  position:fixed;inset:0;z-index:10000;
+  background:rgba(0,0,0,.85);
+  backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;
+  transition:opacity .4s,visibility .4s;
+}
+.modal-overlay.active{opacity:1;visibility:visible}
+.modal-overlay.active .modal-card{
+  transform:perspective(800px) rotateX(0) rotateY(0) scale(1);
+  opacity:1;
+}
+.modal-card{
+  background:linear-gradient(145deg,#14142a,#0d0d1a);
+  border:1px solid rgba(0,240,255,.15);
+  border-radius:20px;
+  padding:48px 40px 40px;
+  text-align:center;
+  max-width:400px;width:90%;
+  position:relative;
+  transform:perspective(800px) rotateX(5deg) rotateY(-3deg) scale(.9);
+  opacity:0;
+  transition:transform .5s cubic-bezier(.23,1,.32,1),opacity .4s;
+  box-shadow:0 0 60px rgba(0,240,255,.08),0 30px 80px rgba(0,0,0,.6);
+}
+.modal-card::before{
+  content:'';position:absolute;top:-1px;left:20%;right:20%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+}
+.modal-close{
+  position:absolute;top:16px;right:16px;
+  width:36px;height:36px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.1);
+  background:transparent;
+  color:#888;font-size:18px;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .3s;
+}
+.modal-close:hover{color:#fff;border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.05)}
+.modal-card h3{font-size:22px;color:#fff;margin-bottom:6px}
+.modal-card .modal-sub{color:#666;font-size:13px;margin-bottom:30px}
+.qr-wrapper{
+  display:inline-block;
+  padding:16px;
+  background:#fff;
+  border-radius:12px;
+  margin-bottom:24px;
+  position:relative;
+}
+.qr-wrapper img{
+  display:block;
+  width:200px;height:200px;
+  border-radius:4px;
+}
+.qr-wrapper::after{
+  content:'';position:absolute;inset:-4px;border-radius:16px;
+  border:2px solid rgba(0,240,255,.3);
+  animation:qrGlow 2s infinite;
+  pointer-events:none;
+}
+@keyframes qrGlow{
+  0%,100%{border-color:rgba(0,240,255,.2);box-shadow:0 0 15px rgba(0,240,255,.05)}
+  50%{border-color:rgba(0,240,255,.5);box-shadow:0 0 30px rgba(0,240,255,.15)}
+}
+.modal-tip{color:#555;font-size:12px;letter-spacing:1px}
+@media(max-width:768px){section{padding:60px 0;min-height:auto}.skills-grid{grid-template-columns:1fr}.stats-bar{gap:24px}.project-preview{flex-direction:column}.modal-card{padding:36px 24px 32px}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="cursor"></div>
+<div id="cursor-dot"></div>
+
+
+<!-- QR MODAL -->
+<div class="modal-overlay" id="qrModal">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose">✕</button>
+    <h3>📱 扫码加微信</h3>
+    <p class="modal-sub">备注来意，秒通过</p>
+    <div class="qr-wrapper">
+      <img src="wechat-qr.png" alt="微信二维码" id="qrImage">
+    </div>
+    <p class="modal-tip">长按或截图扫码 →</p>
+  </div>
+</div>
+
+<div class="container">
+
+<section class="hero" style="position:relative">
+  <div class="hero-badge">⚡ Full-Stack Developer</div>
+  <div class="glitch-wrap">
+    <h1 class="glitch" data-text="I BUILD THE WEB">I BUILD THE WEB</h1>
+  </div>
+  <p class="subtitle">前端 · 后端 · 小程序 · 全都要</p>
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num" data-count="99">0+</div><div class="stat-label">Projects</div></div>
+    <div class="stat"><div class="stat-num" data-count="66">0+</div><div class="stat-label">Clients</div></div>
+    <div class="stat"><div class="stat-num" data-count="24">0/7</div><div class="stat-label">Support</div></div>
+  </div>
+  <div class="scroll-indicator">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<section>
+  <div style="width:100%">
+    <div class="section-title">⚙️ Capabilities</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="glow-dot"></div>
+        <div class="skill-icon">🎨</div>
+        <h3>Frontend</h3>
+        <p>React · Vue · Next.js · TypeScript<br>Tailwind · GSAP · Three.js<br>像素级还原，动效拉满</p>
+      </div>
+      <div class="skill-card">
+        <div class="glow-dot"></div>
+        <div class="skill-icon">⚡</div>
+        <h3>Backend</h3>
+        <p>Node.js · Python · Go<br>PostgreSQL · Redis · Docker<br>高并发架构，稳如老狗</p>
+      </div>
+      <div class="skill-card">
+        <div class="glow-dot"></div>
+        <div class="skill-icon">📱</div>
+        <h3>Mini Programs</h3>
+        <p>微信小程序 · Uni-App<br>从零到上线 · 一条龙服务<br>校园项目经验丰富</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="terminal-section">
+  <div class="section-title">💻 Live Terminal</div>
+  <div class="terminal">
+    <div class="terminal-header">
+      <div class="terminal-dot"></div>
+      <div class="terminal-dot"></div>
+      <div class="terminal-dot"></div>
+      <span class="terminal-title">guest@portfolio — zsh</span>
+    </div>
+    <div class="terminal-body" id="terminal"></div>
+  </div>
+</section>
+
+<section style="align-items:flex-start">
+  <div style="width:100%">
+    <div class="section-title">🚀 Recent Work</div>
+    <div class="project-preview">
+      <div class="project-card">
+        <div class="project-img">🛒</div>
+        <div class="project-info">
+          <h3>E-Commerce Platform</h3>
+          <p>全栈商城系统，支持支付、库存、实时物流</p>
+          <div class="project-tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Redis</span></div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-img">📊</div>
+        <div class="project-info">
+          <h3>Admin Dashboard</h3>
+          <p>数据可视化后台，WebSocket 实时推送</p>
+          <div class="project-tags"><span class="tag">Vue</span><span class="tag">ECharts</span><span class="tag">Go</span></div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-img">📱</div>
+        <div class="project-info">
+          <h3>Campus Mini App</h3>
+          <p>校园服务小程序，日活 3000+</p>
+          <div class="project-tags"><span class="tag">Uni-App</span><span class="tag">Python</span><span class="tag">MySQL</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2 class="cta-text">有想法？来搞。</h2>
+  <p class="cta-sub">课设 · 毕设 · 外包 · 创业项目 · 什么都接</p>
+  <a href="#" class="glow-btn" id="ctaBtn">→ 联系我</a>
+</section>
+
+</div>
+
+<script>
+// === PARTICLE SYSTEM ===
+const canvas=document.getElementById('bg');
+const ctx=canvas.getContext('2d');
+let particles=[];
+let mouse={x:null,y:null,radius:150};
+
+function resize(){
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+}
+window.addEventListener('resize',resize);
+resize();
+
+class Particle{
+  constructor(){
+    this.reset();
+    this.y=Math.random()*canvas.height;
+  }
+  reset(){
+    this.x=Math.random()*canvas.width;
+    this.y=-10;
+    this.size=Math.random()*2+1;
+    this.speedY=Math.random()*.5+.2;
+    this.speedX=(Math.random()-.5)*.3;
+    this.opacity=Math.random()*.5+.2;
+  }
+  update(){
+    this.y+=this.speedY;
+    this.x+=this.speedX;
+    if(mouse.x!=null){
+      let dx=this.x-mouse.x;
+      let dy=this.y-mouse.y;
+      let dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<mouse.radius){
+        let force=(mouse.radius-dist)/mouse.radius;
+        this.x+=dx*force*.02;
+        this.y+=dy*force*.02;
+      }
+    }
+    if(this.y>canvas.height+10||this.x<-10||this.x>canvas.width+10)this.reset();
+  }
+  draw(){
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+    ctx.fillStyle='rgba(0,240,255,'+this.opacity+')';
+    ctx.fill();
+  }
+}
+
+for(let i=0;i<200;i++)particles.push(new Particle());
+
+function drawConnections(){
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      let dx=particles[i].x-particles[j].x;
+      let dy=particles[i].y-particles[j].y;
+      let dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<100){
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x,particles[i].y);
+        ctx.lineTo(particles[j].x,particles[j].y);
+        ctx.strokeStyle='rgba(0,240,255,'+(0.08*(1-dist/100))+')';
+        ctx.lineWidth=.5;
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(function(p){p.update();p.draw()});
+  drawConnections();
+  requestAnimationFrame(animate);
+}
+animate();
+
+// === MOUSE ===
+document.addEventListener('mousemove',function(e){
+  mouse.x=e.clientX;
+  mouse.y=e.clientY;
+  document.getElementById('cursor').style.left=e.clientX+'px';
+  document.getElementById('cursor').style.top=e.clientY+'px';
+  document.getElementById('cursor-dot').style.left=e.clientX+'px';
+  document.getElementById('cursor-dot').style.top=e.clientY+'px';
+});
+
+// === TERMINAL SIMULATION ===
+const terminalEl=document.getElementById('terminal');
+const lines=[
+  {type:'cmd',text:'whoami'},
+  {type:'out',text:'full-stack developer · student · builder'},
+  {type:'cmd',text:'cat skills.txt'},
+  {type:'out',text:'[Frontend] React · Vue · Next.js · TypeScript · Three.js'},
+  {type:'out',text:'[Backend]  Node.js · Python · Go · PostgreSQL · Docker'},
+  {type:'out',text:'[Tools]    Git · Linux · AWS · CI/CD · Vim btw'},
+  {type:'cmd',text:'uptime'},
+  {type:'out',text:'coding since 2019 · 10000+ hours · still sane (mostly)'},
+  {type:'cmd',text:'echo $MOOD'},
+  {type:'out',text:'open for commissions ツ'},
+];
+
+let lineIndex=0;
+async function typeLine(){
+  if(lineIndex>=lines.length){
+    terminalEl.innerHTML+='<div class="terminal-line"><span class="terminal-prompt">❯ </span><span class="terminal-cursor"></span></div>';
+    return;
+  }
+  const line=lines[lineIndex];
+  const div=document.createElement('div');
+  div.className='terminal-line';
+  if(line.type==='cmd'){
+    div.innerHTML='<span class="terminal-prompt">❯ </span><span class="terminal-output"></span><span class="terminal-cursor"></span>';
+    terminalEl.appendChild(div);
+    const outSpan=div.querySelector('.terminal-output');
+    const cursorSpan=div.querySelector('.terminal-cursor');
+    for(let char of line.text){
+      outSpan.textContent+=char;
+      await new Promise(function(r){setTimeout(r,30+Math.random()*40)});
+    }
+    cursorSpan.remove();
+    await new Promise(function(r){setTimeout(r,300)});
+  }else{
+    div.innerHTML='<span style="color:#555;margin-right:8px">→</span><span style="color:#888">'+line.text+'</span>';
+    terminalEl.appendChild(div);
+    await new Promise(function(r){setTimeout(r,200)});
+  }
+  lineIndex++;
+  typeLine();
+}
+
+const terminalObserver=new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting&&lineIndex===0){
+      setTimeout(typeLine,500);
+      terminalObserver.unobserve(entry.target);
+    }
+  });
+},{threshold:.3});
+terminalObserver.observe(document.querySelector('.terminal-section'));
+
+// === SCROLL ANIMATIONS ===
+const observer=new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      entry.target.style.animation='fadeInUp .6s ease forwards';
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:.15});
+
+document.querySelectorAll('.skill-card,.project-card,.section-title').forEach(function(el){
+  el.style.opacity='0';
+  observer.observe(el);
+});
+
+// === 3D TILT ON CARDS ===
+document.querySelectorAll('.skill-card').forEach(function(card){
+  card.addEventListener('mousemove',function(e){
+    const rect=card.getBoundingClientRect();
+    const x=e.clientX-rect.left;
+    const y=e.clientY-rect.top;
+    const centerX=rect.width/2;
+    const centerY=rect.height/2;
+    const rotateX=(y-centerY)/centerY*-8;
+    const rotateY=(x-centerX)/centerX*8;
+    card.style.transform='perspective(1000px) rotateX('+rotateX+'deg) rotateY('+rotateY+'deg) translateY(-8px)';
+  });
+  card.addEventListener('mouseleave',function(){
+    card.style.transform='perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+  });
+});
+
+// === COUNTER ANIMATION ===
+const counterObserver=new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      const el=entry.target;
+      const target=parseInt(el.dataset.count);
+      const suffix=el.textContent.includes('/')?'/7':'+';
+      let count=0;
+      const duration=1500;
+      const step=target/(duration/16);
+      function update(){
+        count+=step;
+        if(count<target){
+          el.textContent=Math.floor(count)+suffix;
+          requestAnimationFrame(update);
+        }else{
+          el.textContent=target+suffix;
+        }
+      }
+      update();
+      counterObserver.unobserve(el);
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('.stat-num[data-count]').forEach(function(el){counterObserver.observe(el)});
+
+// === QR MODAL ===
+var qrModal=document.getElementById('qrModal');
+var ctaBtn=document.getElementById('ctaBtn');
+var modalClose=document.getElementById('modalClose');
+
+ctaBtn.addEventListener('click',function(e){
+  e.preventDefault();
+  qrModal.classList.add('active');
+  document.body.style.overflow='hidden';
+});
+
+function closeModal(){
+  qrModal.classList.remove('active');
+  document.body.style.overflow='';
+}
+
+modalClose.addEventListener('click',closeModal);
+qrModal.addEventListener('click',function(e){
+  if(e.target===qrModal)closeModal();
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape')closeModal();
+});
+
+// === QR FALLBACK (if image fails to load) ===
+var qrImage=document.getElementById('qrImage');
+qrImage.onerror=function(){
+  var wrapper=document.querySelector('.qr-wrapper');
+  wrapper.innerHTML='<div style="width:200px;height:200px;background:#f5f5f5;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px"><span style="font-size:48px">📷</span><span style="color:#999;font-size:11px">将微信二维码图片<br>放到同目录下<br>命名为 wechat-qr.png</span></div>';
+};
+
+</script>
+</body>
+</html>
