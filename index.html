@@ -231,30 +231,22 @@ section{padding:100px 0;min-height:100vh;display:flex;align-items:center}
   <div style="width:100%">
     <div class="section-title">🚀 Recent Work</div>
     <div class="project-preview">
-      <div class="project-card">
-        <div class="project-img">🛒</div>
+      <a class="project-card" href="https://jm666-qwe.github.io/todo/" target="_blank" style="text-decoration:none;color:inherit">
+        <div class="project-img" style="background:linear-gradient(135deg,#1a1a3e,#2d1b4e)">✅</div>
         <div class="project-info">
-          <h3>E-Commerce Platform</h3>
-          <p>全栈商城系统，支持支付、库存、实时物流</p>
-          <div class="project-tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Redis</span></div>
+          <h3>✨ Todo 智能待办</h3>
+          <p>5套主题配色 · 番茄钟计时 · 子任务拆解 · 拖拽排序 · 离线 PWA 可用</p>
+          <div class="project-tags"><span class="tag">PWA</span><span class="tag">Vanilla JS</span><span class="tag">IndexedDB</span></div>
         </div>
-      </div>
-      <div class="project-card">
-        <div class="project-img">📊</div>
+      </a>
+      <a class="project-card" href="https://github.com/jm666-qwe/drink-order" target="_blank" style="text-decoration:none;color:inherit">
+        <div class="project-img" style="background:linear-gradient(135deg,#1a3a2e,#0d3b2b)">🧋</div>
         <div class="project-info">
-          <h3>Admin Dashboard</h3>
-          <p>数据可视化后台，WebSocket 实时推送</p>
-          <div class="project-tags"><span class="tag">Vue</span><span class="tag">ECharts</span><span class="tag">Go</span></div>
+          <h3>🧋 饮品点单系统</h3>
+          <p>客户扫码下单 → 商家实时接单 → 后台管理，微信小程序一体闭环</p>
+          <div class="project-tags"><span class="tag">微信小程序</span><span class="tag">Node.js</span><span class="tag">WebSocket</span></div>
         </div>
-      </div>
-      <div class="project-card">
-        <div class="project-img">📱</div>
-        <div class="project-info">
-          <h3>Campus Mini App</h3>
-          <p>校园服务小程序，日活 3000+</p>
-          <div class="project-tags"><span class="tag">Uni-App</span><span class="tag">Python</span><span class="tag">MySQL</span></div>
-        </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -357,18 +349,20 @@ document.addEventListener('mousemove',function(e){
 
 // === TERMINAL SIMULATION ===
 const terminalEl=document.getElementById('terminal');
-const lines=[
-  {type:'cmd',text:'whoami'},
-  {type:'out',text:'full-stack developer · student · builder'},
-  {type:'cmd',text:'cat skills.txt'},
-  {type:'out',text:'[Frontend] React · Vue · Next.js · TypeScript · Three.js'},
-  {type:'out',text:'[Backend]  Node.js · Python · Go · PostgreSQL · Docker'},
-  {type:'out',text:'[Tools]    Git · Linux · AWS · CI/CD · Vim btw'},
-  {type:'cmd',text:'uptime'},
-  {type:'out',text:'coding since 2019 · 10000+ hours · still sane (mostly)'},
-  {type:'cmd',text:'echo $MOOD'},
-  {type:'out',text:'open for commissions ツ'},
-];
+	const lines=[
+	  {type:'cmd',text:'whoami'},
+	  {type:'out',text:'full-stack developer · student · builder'},
+	  {type:'cmd',text:'cat projects.json'},
+	  {type:'out',text:'{ "active": 2, "released": ["Todo PWA", "Drink Order System"] }'},
+	  {type:'cmd',text:'cat skills.txt'},
+	  {type:'out',text:'[Frontend] React · Vue · PWA · Vanilla JS · GSAP'},
+	  {type:'out',text:'[Backend]  Node.js · Python · PostgreSQL · WebSocket'},
+	  {type:'out',text:'[Platform] 微信小程序 · GitHub Pages · Netlify'},
+	  {type:'cmd',text:'uptime'},
+	  {type:'out',text:'coding since 2019 · 10000+ hours · still building'},
+	  {type:'cmd',text:'echo $STATUS'},
+	  {type:'out',text:'open for freelance ツ'},
+	];
 
 let lineIndex=0;
 async function typeLine(){
