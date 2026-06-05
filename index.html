@@ -3,229 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1 · 全栈开发</title>
+<title>张雨桐 · 全栈开发</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
 <style>
-* { margin:0; padding:0; box-sizing:border-box }
-body {
-  font-family: 'Noto Sans SC', system-ui, sans-serif;
-  color: #1a1a1a;
-  background: #fff;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans SC',system-ui,sans-serif;color:#1a1a1a;background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
 
-/* Hero */
-.hero {
-  padding: 80px 32px 64px;
-  max-width: 640px;
-  margin: 0 auto;
-}
-.hero .tag {
-  display: inline-block;
-  background: #f5f5f5;
-  color: #666;
-  font-size: 13px;
-  font-weight: 500;
-  padding: 4px 14px;
-  margin-bottom: 24px;
-  letter-spacing: 0.02em;
-}
-.hero h1 {
-  font-size: clamp(2.2rem, 5vw, 3.2rem);
-  font-weight: 900;
-  line-height: 1.2;
-  letter-spacing: -0.03em;
-  margin-bottom: 16px;
-}
-.hero h1 span { color: #c4683f }
-.hero .sub {
-  font-size: 1.1rem;
-  color: #666;
-  margin-bottom: 40px;
-  line-height: 1.8;
-}
-.hero .contact-row {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.hero .contact-row a, .hero .contact-row button {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 28px;
-  font-size: 15px;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: inherit;
-  transition: all 0.2s;
-}
-.btn-dark {
-  background: #1a1a1a;
-  color: #fff;
-  border: 2px solid #1a1a1a;
-}
-.btn-dark:hover { background: #333; border-color: #333 }
-.btn-outline {
-  background: #fff;
-  color: #1a1a1a;
-  border: 2px solid #e0e0e0;
-}
-.btn-outline:hover { border-color: #1a1a1a }
+.hero{padding:80px 32px 64px;max-width:640px;margin:0 auto}
+.hero .tag{display:inline-block;background:#f5f5f5;color:#666;font-size:13px;font-weight:500;padding:4px 14px;margin-bottom:24px;letter-spacing:.02em}
+.hero h1{font-size:clamp(2.2rem,5vw,3.2rem);font-weight:900;line-height:1.2;letter-spacing:-.03em;margin-bottom:16px}
+.hero h1 span{color:#c4683f}
+.hero .sub{font-size:1.1rem;color:#666;margin-bottom:40px;line-height:1.8}
+.hero .contact-row{display:flex;gap:12px;flex-wrap:wrap}
+.hero .contact-row a,.hero .contact-row button{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;font-size:15px;font-weight:600;text-decoration:none;border-radius:8px;cursor:pointer;font-family:inherit;transition:all .2s}
+.btn-dark{background:#1a1a1a;color:#fff;border:2px solid #1a1a1a}
+.btn-dark:hover{background:#333;border-color:#333}
+.btn-outline{background:#fff;color:#1a1a1a;border:2px solid #e0e0e0}
+.btn-outline:hover{border-color:#1a1a1a}
 
-/* Projects */
-.projects {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 32px 80px;
-}
-.projects h2 {
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #999;
-  margin-bottom: 32px;
-}
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.project-card {
-  border: 1px solid #eee;
-  border-radius: 12px;
-  padding: 32px 24px;
-  text-decoration: none;
-  color: inherit;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  display: flex;
-  flex-direction: column;
-}
-.project-card:hover {
-  border-color: #ccc;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-}
-.project-card .num {
-  font-size: 12px;
-  font-weight: 700;
-  color: #c4683f;
-  letter-spacing: 0.06em;
-  margin-bottom: 16px;
-}
-.project-card h3 {
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-.project-card p {
-  font-size: 0.9rem;
-  color: #777;
-  line-height: 1.7;
-  flex: 1;
-}
-.project-card .more {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin-top: 20px;
-  transition: gap 0.2s;
-}
-.project-card:hover .more { gap: 10px; color: #c4683f }
-.project-card .more svg { width: 14px; height: 14px }
+.projects{max-width:960px;margin:0 auto;padding:0 32px 80px}
+.projects h2,.skills h2,.pricing h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:#999;margin-bottom:32px}
+.project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.project-card{border:1px solid #eee;border-radius:12px;padding:32px 24px;text-decoration:none;color:inherit;transition:border-color .2s,box-shadow .2s;display:flex;flex-direction:column}
+.project-card:hover{border-color:#ccc;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.project-card .num{font-size:12px;font-weight:700;color:#c4683f;letter-spacing:.06em;margin-bottom:16px}
+.project-card h3{font-size:1.15rem;font-weight:700;margin-bottom:8px}
+.project-card p{font-size:.9rem;color:#777;line-height:1.7;flex:1}
+.project-card .more{display:inline-flex;align-items:center;gap:6px;font-size:.85rem;font-weight:600;color:#1a1a1a;margin-top:20px;transition:gap .2s}
+.project-card:hover .more{gap:10px;color:#c4683f}
+.project-card .more svg{width:14px;height:14px}
 
-/* Skills */
-.skills {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 32px 80px;
-}
-.skills h2 {
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #999;
-  margin-bottom: 32px;
-}
-.skill-tags { display: flex; flex-wrap: wrap; gap: 10px }
-.skill-tags span {
-  padding: 8px 20px;
-  border: 1px solid #e8e8e8;
-  font-size: 0.88rem;
-  color: #444;
-  font-weight: 500;
-  transition: border-color 0.2s, background 0.2s;
-  cursor: default;
-}
-.skill-tags span:hover { border-color: #bbb; background: #fafafa }
+.skills,.pricing{max-width:960px;margin:0 auto;padding:0 32px 80px}
+.skill-tags{display:flex;flex-wrap:wrap;gap:10px}
+.skill-tags span{padding:8px 20px;border:1px solid #e8e8e8;font-size:.88rem;color:#444;font-weight:500;transition:border-color .2s,background .2s;cursor:default}
+.skill-tags span:hover{border-color:#bbb;background:#fafafa}
 
-/* Footer */
-footer {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 32px 32px 48px;
-  border-top: 1px solid #eee;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.82rem;
-  color: #999;
-}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.price-card{border:1px solid #eee;border-radius:12px;padding:28px 20px;text-align:center;transition:border-color .2s}
+.price-card:hover{border-color:#c4683f}
+.price-card h3{font-size:.95rem;font-weight:700;margin-bottom:12px}
+.price-card .price{font-size:2rem;font-weight:900;color:#c4683f;margin-bottom:4px}
+.price-card .unit{font-size:.85rem;color:#999;margin-bottom:12px}
+.price-card .desc{font-size:.82rem;color:#666;line-height:1.7}
 
-/* QR Modal */
-.modal-overlay {
-  position: fixed; inset: 0; z-index: 1000;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(4px);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; visibility: hidden;
-  transition: opacity 0.25s, visibility 0.25s;
-}
-.modal-overlay.active { opacity: 1; visibility: visible }
-.modal-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 40px 36px 32px;
-  text-align: center;
-  max-width: 320px;
-  width: 90%;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-  position: relative;
-}
-.modal-close {
-  position: absolute; top: 12px; right: 14px;
-  background: none; border: none;
-  font-size: 22px; color: #999; cursor: pointer;
-  width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
-  border-radius: 50%;
-}
-.modal-close:hover { background: #f5f5f5; color: #333 }
-.modal-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px }
-.modal-card .modal-sub { font-size: 14px; color: #999; margin-bottom: 24px }
-.qr-wrapper { display: inline-block; padding: 10px; border: 1px solid #eee; border-radius: 8px; margin-bottom: 16px }
-.qr-wrapper img { display: block; width: 160px; height: 160px; border-radius: 4px }
-.modal-tip { font-size: 12px; color: #bbb }
+footer{max-width:960px;margin:0 auto;padding:32px 32px 48px;border-top:1px solid #eee;display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:#999}
 
-@media (max-width: 768px) {
-  .hero { padding: 48px 24px 40px }
-  .project-grid { grid-template-columns: 1fr }
-  .projects, .skills { padding: 0 24px 60px }
-  footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center }
-}
+.modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.modal-overlay.active{opacity:1;visibility:visible}
+.modal-card{background:#fff;border-radius:16px;padding:40px 36px 32px;text-align:center;max-width:320px;width:90%;box-shadow:0 20px 50px rgba(0,0,0,.15);position:relative}
+.modal-close{position:absolute;top:12px;right:14px;background:none;border:none;font-size:22px;color:#999;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.modal-close:hover{background:#f5f5f5;color:#333}
+.modal-card h3{font-size:18px;font-weight:700;margin-bottom:4px}
+.modal-card .modal-sub{font-size:14px;color:#999;margin-bottom:24px}
+.qr-wrapper{display:inline-block;padding:10px;border:1px solid #eee;border-radius:8px;margin-bottom:16px}
+.qr-wrapper img{display:block;width:160px;height:160px;border-radius:4px}
+.modal-tip{font-size:12px;color:#bbb}
+
+@media(max-width:768px){.hero{padding:48px 24px 40px}.project-grid,.price-grid{grid-template-columns:1fr}.projects,.skills,.pricing{padding:0 24px 60px}footer{padding:24px;flex-direction:column;gap:8px;text-align:center}}
 </style>
 </head>
 <body>
 
 <div class="hero">
   <div class="tag">在校 · 全栈 · 接单</div>
-  <h1>你好，我是<span>1</span>。<br>写代码的人。</h1>
+  <h1>你好，我是<span>张雨桐</span>。<br>写代码的人。</h1>
   <p class="sub">大一，网络工程在读。课设、毕设、外包、小程序，什么都接。<br>下面是我做的三个项目，每个都是独立完成的。</p>
   <div class="contact-row">
     <a href="https://jm666-qwe.github.io/todo/" target="_blank" class="btn-dark">看我的作品</a>
@@ -236,92 +79,82 @@ footer {
 <div class="projects">
   <h2>我的项目</h2>
   <div class="project-grid">
-
     <a class="project-card" href="https://jm666-qwe.github.io/todo/" target="_blank">
       <div class="num">01</div>
       <h3>智能待办清单</h3>
       <p>五套主题、番茄钟、子任务拆解、拖拽排序。PWA 装手机上像原生 App，没网也能用。</p>
-      <span class="more">
-        查看详情
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </span>
+      <span class="more">查看详情 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
     </a>
-
     <a class="project-card" href="https://jm666-qwe.github.io/microsteps/" target="_blank">
       <div class="num">02</div>
       <h3>AI 拆解大师</h3>
       <p>输入大目标，AI 递归拆成微小行动。考研、学吉他、写小说，十套预设，点开就能用。</p>
-      <span class="more">
-        查看详情
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </span>
+      <span class="more">查看详情 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
     </a>
-
     <a class="project-card" href="https://jm666-qwe.github.io/drink-order/" target="_blank">
       <div class="num">03</div>
       <h3>饮品点单系统</h3>
       <p>客人扫码下单，商家后台实时接单。含微信小程序，从点单到叫号完整闭环。</p>
-      <span class="more">
-        查看详情
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </span>
+      <span class="more">查看详情 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
     </a>
+  </div>
+</div>
 
+<div class="pricing">
+  <h2>收费标准</h2>
+  <div class="price-grid">
+    <div class="price-card">
+      <h3>课程设计</h3>
+      <div class="price">200</div>
+      <div class="unit">元起 / 个</div>
+      <div class="desc">前端/后端/数据库课设<br>含源码 + 演示视频<br>3-5天交付</div>
+    </div>
+    <div class="price-card">
+      <h3>毕业设计</h3>
+      <div class="price">面议</div>
+      <div class="unit">视复杂度定价</div>
+      <div class="desc">Web应用 · 小程序 · 管理系统<br>含论文指导 + 答辩辅导<br>提前2周预约</div>
+    </div>
+    <div class="price-card">
+      <h3>外包项目</h3>
+      <div class="price">面议</div>
+      <div class="unit">按需求报价</div>
+      <div class="desc">企业官网 · 小程序 · 后台系统<br>源码交付 · 部署上线<br>长期维护可谈</div>
+    </div>
   </div>
 </div>
 
 <div class="skills">
   <h2>我能做什么</h2>
   <div class="skill-tags">
-    <span>网站开发</span>
-    <span>微信小程序</span>
-    <span>PWA 离线应用</span>
-    <span>Node.js 后端</span>
-    <span>WebSocket 实时通信</span>
-    <span>React · Vue</span>
-    <span>数据库设计</span>
-    <span>GitHub Pages 部署</span>
-    <span>AI 开发工具</span>
+    <span>网站开发</span><span>微信小程序</span><span>PWA 离线应用</span>
+    <span>Node.js 后端</span><span>WebSocket 实时通信</span><span>React · Vue</span>
+    <span>数据库设计</span><span>GitHub Pages 部署</span><span>AI 开发工具</span>
   </div>
 </div>
 
 <footer>
-  <span>&copy; 2026 1</span>
+  <span>&copy; 2026 张雨桐</span>
   <span>课设 · 毕设 · 外包 · 小程序 — 都接</span>
 </footer>
 
-<!-- QR Modal -->
 <div class="modal-overlay" id="qrModal">
   <div class="modal-card">
     <button class="modal-close" id="modalClose">&times;</button>
     <h3>扫码加微信</h3>
     <p class="modal-sub">备注来意，看到就回</p>
-    <div class="qr-wrapper">
-      <img src="wechat-qr.png" alt="微信二维码" id="qrImage">
-    </div>
+    <div class="qr-wrapper"><img src="wechat-qr.png" alt="微信二维码" id="qrImage"></div>
     <p class="modal-tip">截图后用微信扫码</p>
   </div>
 </div>
 
 <script>
-document.getElementById('ctaBtn').addEventListener('click', function() {
-  document.getElementById('qrModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-});
-function closeModal() {
-  document.getElementById('qrModal').classList.remove('active');
-  document.body.style.overflow = '';
-}
-document.getElementById('modalClose').addEventListener('click', closeModal);
-document.getElementById('qrModal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeModal();
-});
-document.getElementById('qrImage').onerror = function() {
-  document.querySelector('.qr-wrapper').innerHTML = '<div style="width:160px;height:160px;background:#f5f5f5;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#999;text-align:center;padding:16px">将 wechat-qr.png<br>放在同目录下</div>';
-};
+document.getElementById('ctaBtn').addEventListener('click',function(){document.getElementById('qrModal').classList.add('active');document.body.style.overflow='hidden'});
+function closeModal(){document.getElementById('qrModal').classList.remove('active');document.body.style.overflow=''}
+document.getElementById('modalClose').addEventListener('click',closeModal);
+document.getElementById('qrModal').addEventListener('click',function(e){if(e.target===this)closeModal()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal()});
+document.getElementById('qrImage').onerror=function(){document.querySelector('.qr-wrapper').innerHTML='<div style="width:160px;height:160px;background:#f5f5f5;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#999;text-align:center;padding:16px">将 wechat-qr.png<br>放在同目录下</div>'}
 </script>
 </body>
 </html>
