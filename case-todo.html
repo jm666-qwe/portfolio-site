@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智能待办清单 · 案例</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap">
+<style>
+:root {
+  --cream: #faf5e4; --charcoal: #2d2d2d; --terracotta: #c4683f;
+  --surface: #f3ede4; --border-warm: rgba(139,90,43,0.15); --text-muted: #6b5e53;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --ease-editorial: cubic-bezier(0.16,1,0.3,1);
+}
+*, *::before, *::after { margin:0;padding:0;box-sizing:border-box }
+body { background:var(--cream); color:var(--charcoal); font-family:var(--font-body); line-height:1.7; -webkit-font-smoothing:antialiased }
+h1,h2 { font-family:var(--font-display) }
+h1 { font-size:clamp(2.5rem,5vw,4.5rem); line-height:1.08; letter-spacing:-0.02em }
+h2 { font-size:clamp(1.6rem,2.5vw,2.2rem); line-height:1.2 }
+.container { max-width:780px; margin:0 auto; padding:0 32px }
+.back-link {
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:0.85rem; color:var(--text-muted); text-decoration:none;
+  margin-bottom:48px; transition:color 0.25s ease;
+}
+.back-link:hover { color:var(--terracotta) }
+.back-link svg { width:16px; height:16px }
+section { padding:80px 0 }
+.hero { padding:120px 0 80px }
+.overline { font-size:0.68rem; text-transform:uppercase; letter-spacing:0.2em; color:var(--terracotta); font-weight:600; display:block; margin-bottom:16px }
+.hero p { font-size:1.1rem; color:var(--text-muted); max-width:560px; margin-top:24px; line-height:1.9 }
+
+.problem-solution {
+  display:grid; grid-template-columns:1fr 1fr; gap:48px; padding:80px 0;
+  border-top:1px solid var(--border-warm); border-bottom:1px solid var(--border-warm);
+}
+.ps-col h3 { font-family:var(--font-display); font-size:1.4rem; margin-bottom:12px; font-style:italic }
+.ps-col p { color:var(--text-muted); font-size:0.95rem; line-height:1.9 }
+.ps-col .tag { display:inline-block; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--terracotta); border:1px solid var(--border-warm); padding:3px 12px; margin-bottom:16px }
+
+.feature-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--border-warm); margin:48px 0 }
+.feature-item { background:var(--cream); padding:36px 28px }
+.feature-item h4 { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--terracotta); margin-bottom:8px }
+.feature-item p { font-size:0.9rem; color:var(--text-muted); line-height:1.7 }
+
+.tech-stack { display:flex; gap:16px; flex-wrap:wrap; margin-top:32px }
+.tech-stack span {
+  font-size:0.78rem; font-weight:500;
+  padding:8px 20px; border:1px solid var(--border-warm);
+  color:var(--charcoal); transition:border-color 0.25s,background 0.25s
+}
+
+.cta-block { text-align:center; padding:100px 0 }
+.cta-block a {
+  display:inline-flex; align-items:center; gap:10px;
+  padding:15px 40px; background:var(--charcoal); color:var(--cream);
+  text-decoration:none; font-size:0.9rem; font-weight:500; letter-spacing:0.04em;
+  transition:background 0.3s ease,gap 0.3s ease
+}
+.cta-block a:hover { background:var(--terracotta); gap:16px }
+.cta-block a svg { width:16px; height:16px }
+
+.insight { background:var(--surface); padding:48px 40px; margin:48px 0 }
+.insight p { font-family:var(--font-display); font-size:1.3rem; font-style:italic; line-height:1.6; color:var(--charcoal) }
+.insight .attr { font-size:0.75rem; color:var(--text-muted); margin-top:16px; letter-spacing:0.06em }
+
+@media(max-width:768px) {
+  .container { padding:0 24px }
+  .problem-solution { grid-template-columns:1fr; gap:32px }
+  .feature-grid { grid-template-columns:1fr }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<section class="hero">
+  <span class="overline">Case Study · 01</span>
+  <h1>智能待办清单</h1>
+  <p>市面上的待办软件要么太复杂——Notion 级的学习成本，要么太简陋——只能打勾。做一个"刚好够用但又好看"的。</p>
+</section>
+
+<div class="problem-solution">
+  <div class="ps-col">
+    <span class="tag">问题</span>
+    <h3>选择困难</h3>
+    <p>待办软件两极分化：一端是 Notion / TickTick 功能爆炸，另一端是系统备忘录啥也没有。中间地带——够用、好看、打开就用的——不存在。</p>
+  </div>
+  <div class="ps-col">
+    <span class="tag">解法</span>
+    <h3>刚好够用</h3>
+    <p>不做大而全。五套主题让你挑喜欢的，番茄钟内嵌不跳转，子任务拆解不臃肿。PWA 装手机上像原生 App，不用下载。</p>
+  </div>
+</div>
+
+<div class="feature-grid">
+  <div class="feature-item"><h4>五套主题</h4><p>Cashmere / Noir / Sage / Mauve / Sepia，一键切换，不用调色</p></div>
+  <div class="feature-item"><h4>番茄钟</h4><p>内嵌在任务里，不跳页面。开始计时、完成休息，专注心流</p></div>
+  <div class="feature-item"><h4>子任务拆解</h4><p>大任务拆小步，一步步勾，不压脑</p></div>
+  <div class="feature-item"><h4>拖拽排序</h4><p>手指拖拽调优先级，比打字改序号快十倍</p></div>
+  <div class="feature-item"><h4>离线 PWA</h4><p>没网也能用。Service Worker 缓存，打开即用</p></div>
+  <div class="feature-item"><h4>导入导出</h4><p>JSON 格式，数据永远在你手里，不锁</p></div>
+</div>
+
+<div class="tech-stack">
+  <span>PWA</span><span>Service Worker</span><span>IndexedDB</span><span>Vanilla JS</span><span>零依赖</span><span>响应式</span>
+</div>
+
+<div class="insight">
+  <p>"客户不关心你用 React 还是 Vue。客户关心：这东西装我手机上能用吗？好看吗？会丢数据吗？"</p>
+  <div class="attr">—— 做完这个项目才懂的道理</div>
+</div>
+
+<div class="cta-block">
+  <a href="https://jm666-qwe.github.io/todo/" target="_blank">
+    打开项目
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</div>
+
+<a href="index.html" class="back-link">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+  返回作品集
+</a>
+
+</div>
+</body>
+</html>
